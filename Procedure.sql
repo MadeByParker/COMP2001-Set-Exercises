@@ -1,8 +1,7 @@
 CREATE PROCEDURE CW1.AddCustomer(
 	@Name as VARCHAR(255),
 	@Address as VARCHAR(255),
-	@Number as VARCHAR(21),
-	@responseMessage NVARCHAR(250) OUTPUT
+	@Number as VARCHAR(21)
 )
 AS
 BEGIN 
@@ -13,6 +12,7 @@ BEGIN
 			DECLARE @NewName VARCHAR(40)
 			DECLARE @NewAddress VARCHAR(55)
 			DECLARE @NewPhoneNumber VARCHAR(15)
+			DECLARE @responseMessage NVARCHAR(250)
 
 			SELECT @NewPhoneNumber = Phonenumber from CW1.Customer
 			WHERE Phonenumber = @Number
@@ -23,15 +23,17 @@ BEGIN
 			SELECT @NewAddress = CustomerAddress from CW1.Customer
 			WHERE CustomerAddress = @Address
 
-			IF (@NewName IS NULL
-				AND @NewAddress IS NULL 
-				AND @NewPhoneNumber IS NULL)
+			if exists (SELECT * FROM CW1.Customer WHERE CustomerName = @Name AND CustomerAddress = @Address AND Phonenumber = @Number)
+			SET @responseMessage = ' Booking exists with the details: ';
+			
+
+		ELSE
 			BEGIN
-				INSERT INTO CW1.Customer (CustomerName, CustomerAddress, Phonenumber)
-				VALUES (@Name, @Address, @Number)
+			INSERT INTO CW1.Customer
+			VALUES(@Name, @Address, @Number)
+		
 			END
-			ELSE 
-				SET @responseMessage = ' Booking exists with the details: ';
+
 				
 			IF @@TRANCOUNT > 0 COMMIT;
 		END TRY 
