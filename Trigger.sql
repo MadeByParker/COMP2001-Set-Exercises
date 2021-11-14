@@ -10,8 +10,7 @@ BEGIN
                         WHERE CW1.Accommodation.RoomID = (
                                 SELECT CW1.Booking.RoomID from CW1.Booking, inserted WHERE CW1.Booking.BookingID = inserted.BookingID
                         )
-                END
-                
+                END                
 	END
 END
 
