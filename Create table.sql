@@ -13,6 +13,7 @@ CREATE TABLE CW1.Accommodation
 	RoomType varchar(20) not null,
 	AmountOfGuestsLimit int not null,
 	MaintenanceStatus varchar(20) not null /*every 10 visits must trigger to yes*/,
+	Catering VARCHAR(45) NOT NULL,
 	CONSTRAINT pk_Rooms PRIMARY KEY (RoomID),
 )
 
@@ -26,6 +27,7 @@ CREATE TABLE CW1.Booking
 	AmountOfGuests INT not null,
     CheckInDate Date not null,
     CheckOutDate Date not null /*must not be before check in date*/,
+	Catering VARCHAR(45) not NULL
 	CONSTRAINT pk_Booking PRIMARY KEY (BookingID),
 	CONSTRAINT fk_Room FOREIGN KEY (RoomID) 
 	REFERENCES CW1.Accommodation(RoomID), 
@@ -39,12 +41,12 @@ INSERT INTO CW1.Customer (CustomerName, CustomerAddress, Phonenumber)
 VALUES('Harry Parker', 'Plymouth', '07455 123456') 
 
 
-INSERT INTO CW1.Accommodation(RoomType, AmountOfGuestsLImit, MaintenanceStatus)
-VALUES('Sheperds Hut', '8', 'Room Avaliable')
+INSERT INTO CW1.Accommodation(RoomType, AmountOfGuestsLImit, MaintenanceStatus, Catering)
+VALUES('Sheperds Hut', '8', 'Room Avaliable', 'Self Catered or Catered')
 
 
-INSERT INTO CW1.Booking(CustomerID, CustomerName, RoomID, RoomType, AmountOfGuests, CheckInDate, CheckOutDate)
-VALUES ('1', 'Harry Parker', '4', 'Sheperds Hut', '4', '2021-06-26', '2021-07-02')
+INSERT INTO CW1.Booking(CustomerID, CustomerName, RoomID, RoomType, AmountOfGuests, Catering, CheckInDate, CheckOutDate)
+VALUES ('1', 'Harry Parker', '1', 'Sheperds Hut', '4', 'Self-Catered', '2021-06-26', '2021-07-02')
 
 SELECT * from CW1.Accommodation
 DELETE FROM CW1.Booking
