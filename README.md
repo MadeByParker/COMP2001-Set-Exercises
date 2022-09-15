@@ -8,4 +8,6 @@ This is the github repository in use for the COMP2001 Information Management &am
 
 * A bnb based on a farm where the user books for a week long holiday in either a double room, a shepherd's hut, or a barn.
 
-This is the backend SQL database which would be connected to the mobile app shown [here](https://github.com/Parker06/COMP2000-Mobile-Dev-Projects/tree/main/Set%20Exercises) [Mockups here](https://github.com/Parker06/COMP2000-Mobile-Dev-Projects/tree/main/Mockups) 
+This is the backend SQL database which would be connected to the mobile app in this repository [here](https://github.com/Parker06/COMP2000-Mobile-Dev-Projects/tree/main/Set%20Exercises) 
+
+The final designed app is [here](https://github.com/Parker06/COMP2000-Mobile-Dev-Projects/tree/main/Mockups) 
